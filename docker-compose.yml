@@ -1,0 +1,17 @@
+services:
+  oracle:
+    image: gvenzl/oracle-free:23-slim
+    container_name: rh-oracle
+    environment:
+      ORACLE_PASSWORD: oracle          # senha dos usuários SYS e SYSTEM
+      APP_USER: rh                     # usuário da aplicação, criado no PDB FREEPDB1
+      APP_USER_PASSWORD: rh
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./scripts:/scripts:ro
+      - ./exercicios:/exercicios:ro
+      - oracle_data:/opt/oracle/oradata
+
+volumes:
+  oracle_data:
